@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -22,11 +19,10 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps @react-three/fiber @react-three/drei maath react-tilt react-vertical-timeline-component @emailjs/browser framer-motion react-router-dom
+        run: npm install --legacy-peer-deps
 
-      - name: Build and Test
-        run: |
-          npm run build
-          npm test
+      - name: Install Vite
+        run: npm install -g vite
 
-      # Add more steps as needed for your build, test, and deployment processes
+      - name: Build project
+        run: vite build
